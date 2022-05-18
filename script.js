@@ -149,7 +149,7 @@ function getPasswordCriteria() {
 
   // Criteria Selection Storage //
   var pwdCriteriaObj = {
-    length: pwdLength,
+    length: pwdLengthQuestion,
     upperCase: upLetters,
     lowercase: lowLetters,
     num: numbers,
@@ -160,9 +160,9 @@ function getPasswordCriteria() {
 
 
 // Random Generator Function //
-function getRandomIndex(array) {
-var singleRandomIndex = Math.floor(Math.random()*array.length)
-var randomEl = array[singleRandomIndex]
+function getRandomIndex(arr) {
+var singleRandomIndex = Math.floor(Math.random()*arr.length)
+var randomEl = arr[singleRandomIndex]
 return randomEl
 }
 
@@ -209,12 +209,19 @@ if(userOptions.upperCase) {
   garuantee.push(getRandomIndex(upperCasedCharacters))
 }
 
-if(userOptions.length) {
-  possibleChar = possibleChar.concat(singleRandomIndex)
-  garuantee.push(getRandomIndex(singleRandomIndex))
+
+for(var i = 0; i < userOptions.length; i++){
+  var randoChar=getRandomIndex(possibleChar)
+  result.push(randoChar)
+  console.log(randoChar, i)
 }
 
-return result.join
+for (var i = 0; i < garuantee.length; i++){
+  result[i]= garuantee[i]
+}
+
+
+return result.join("")
 }
 
 
